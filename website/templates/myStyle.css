@@ -12,3 +12,12 @@ h1{
     color: white; 
     
 }
+
+h2{
+    font-size: 500%; 
+}
+
+#textContainer{
+    margin: auto; 
+    background-color: aqua; 
+}
