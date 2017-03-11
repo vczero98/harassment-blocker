@@ -15,19 +15,18 @@ def blockMessage(message):
 				emotions[tone["tone_id"]] = tone["score"]
 
 
-	print(emotions["joy"])
+	if emotions["anger"] > emotions["joy"]:
+		return True
+	else:
+		return False
+
+@app.route('/analyse_text/')
+def analyse_text():
+	message = request.args.get("text", 0, type=str)
+
+	return jsonify(block=blockMessage(message))
 
 
-	# print(emotions["document_tone"]["tone_categories"]["tones"])
-
-# @app.route('/analyse_text/')
-# def analyse_text():
-# 	vehicle = request.args.get("text", 0, type=str)
-#
-# 	# possibleVehicles = []
-# 	# for v in vehicles:
-# 	# 	possibleVehicles.append(v.name)
-#
-# 	return jsonify(buildProg=(str(buildProg) + "/" + str(maxBuildSteps)), owned=owned, buildError = buildError)
-
-blockMessage("hello")
+# print(blockMessage("hello"))
+# print(blockMessage("kill yourself"))
+# print(blockMessage("i hate you"))
