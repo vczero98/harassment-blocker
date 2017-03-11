@@ -1,4 +1,4 @@
-# from flask import Flask
+from flask import Flask
 import json
 from watson_developer_cloud import ToneAnalyzerV3
 from ApiDetails import ApiDetails
