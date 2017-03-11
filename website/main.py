@@ -17,7 +17,7 @@ def blockMessage(message):
 			for tone in category["tones"]:
 				emotions[tone["tone_id"]] = tone["score"]
 
-	if emotions["anger"] > emotions["joy"]:
+	if (emotions["anger"] + emotions["disgust"])/2 > (emotions["joy"] +emotions["fear"])/2:
 		return True
 	else:
 		return False
