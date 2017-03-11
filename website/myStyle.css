@@ -1,0 +1,15 @@
+#element{margin, padding, font, font-size, list-style-type}
+
+body{
+    background-color: #C90421;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+h1{
+    margin-left: 35%;
+    margin-right: 35%; 
+    margin-top: 10%;
+    font-size: 300%;
+    color: 0, 0, 0;
+    
+}
