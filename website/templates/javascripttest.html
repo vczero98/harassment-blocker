@@ -1,0 +1,17 @@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type=text/javascript>
+	$(function() {
+		$('#clickbutton').bind('click', function() {
+			var message = "hello dear friend :)";
+			$.getJSON('/analyse_text/', {
+				text: message,
+			}, function(data) {
+				$("#output").text(data.block);
+			});
+			return false;
+		});
+	});
+</script>
+
+<button id="clickbutton" type="button">Click to test!</button>
+<p id="output"></p>
