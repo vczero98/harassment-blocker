@@ -24,7 +24,7 @@ def blockMessage(message):
 
 @app.route('/')
 def index():
-	return render_template("javascripttest.html", test=55)
+	return render_template("index.html", counter=1234567)
 
 @app.route('/analyse_text/')
 def analyse_text():

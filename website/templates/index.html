@@ -1,34 +1,34 @@
-<! DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang = "eng">
 
 <head>
-    
+
 <title>Harassment Website</title>
-    
-<link rel="stylesheet" type="text/css" href="myStyle.css">    
-    
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='myStyle.css') }}">
+
 </head>
 
 <body>
     <div id="imageContainer">
-    
-        <img src="background-image.jpg" alt="Computer component" style="width:100%;height:100%;">
-    
+
+        <img src="{{ url_for('static', filename='background-image.jpg') }}" alt="Computer component" style="width:100%;height:100%;">
+
     </div>
-    
+
     <div id="textContainer">
-        
-        <h2>45022304</h2>
+
+        <h2>{{ counter }}</h2>
         <h1>...Incidents of Harassment Prevented Since 2017</h1>
-        
-    
+
+
     <article>
         <p>Harassment Blocker is a web-browser extension designed to prevent incidents of harassment online through real time scanning of message content and tone. Created as part of StudentHack V, 10-12 March 2017. Get it
             <a href="https://github.com/vczero98/harassment-blocker">here</a>.</p>
         <p id="hashtag">#HackHarassment</p>
     </article>
-        
+
     </div>
 </body>
 </html>
