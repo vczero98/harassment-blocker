@@ -3,14 +3,12 @@ import json
 from watson_developer_cloud import ToneAnalyzerV3
 from ApiDetails import ApiDetails
 import shlex
+from CounterFile import CounterFile
 
 app = Flask(__name__)
 app.secret_key = 'super secret key'
 
-harassmentCounter = 0
-
 def blockMessage(message):
-	global harassmentCounter
 	tone_analyzer = ToneAnalyzerV3(username=ApiDetails.username, password=ApiDetails.password, version=ApiDetails.version)
 	analysed_json = json.loads(json.dumps(tone_analyzer.tone(text=message), indent=2))
 
@@ -23,7 +21,7 @@ def blockMessage(message):
 
 	if (emotions["anger"] + emotions["disgust"])/2 > (emotions["joy"] +emotions["fear"])/2:
 		print(message, True)
-		harassmentCounter += 1
+		CounterFile.increment()
 		return True
 	else:
 		print(message, False)
@@ -31,8 +29,7 @@ def blockMessage(message):
 
 @app.route('/')
 def index():
-	global harassmentCounter
-	return render_template("index.html", counter=harassmentCounter)
+	return render_template("index.html", counter=CounterFile.read())
 	# return render_template("javascripttest.html")
 
 @app.route('/analyse_text/', methods = ['GET', 'POST'])
