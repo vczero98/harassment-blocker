@@ -1,17 +1,159 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type=text/javascript>
-	$(function() {
-		$('#clickbutton').bind('click', function() {
-			var message = "hello dear friend :)";
-			$.getJSON('/analyse_text/', {
-				text: message,
-			}, function(data) {
-				$("#output").text(data.block);
-			});
-			return false;
+	// function checkBlock() {
+	// 	var message = "Sad times";
+	//
+	// 	return bReturn;
+	// 	// return bReturn;
+	// }
+	// function checkBlock() {
+	// 	var message = "hello dear friend :)";
+	// 	$.getJSON('/analyse_text/', {
+	// 		text: message,
+	// 	}, function(data) {
+	// 		return data.block;
+	// 	});
+	// }
+
+	window.onload = function hideHarassment() {
+		var slides = document.getElementsByClassName("UFICommentBody");
+		console.log(slides.length);
+		var counter = 0;
+		var messages = [];
+		for(var i = 0; i < slides.length; i++) {
+			messages.push($(slides.item(i).childNodes[0]).text());
+			messages[i] = messages[i].replace(/\,/g,"")
+		}
+
+		console.log(JSON.stringify(messages))
+
+		$.getJSON("/analyse_text/", {text:JSON.stringify(messages)}, function(data) {
+			var replies = data.replies;
+				console.log(slides.length)
+				for(var i = slides.length - 1; i >= 0; i--)  {
+					console.log(data.replies[i])
+					if (replies[i]) {
+						console.log($(slides.item(i).childNodes[0]));
+						$(slides.item(i).childNodes[0]).text("hello");
+						var parentDiv = $($(slides.item(i).childNodes[0])).parent().parent().parent().parent().parent().parent().parent().parent().parent().parent();
+						parentDiv.css("background", "#FFCCCC");
+						parentDiv.css("padding", "5px");
+						parentDiv.html("<img src='http://localhost:5000/static/icon.png'> <div style='font-style:italic; display:inline-block;'> Comment hidden by HarassmentBlocker</div>");
+					}
+				}
 		});
-	});
+	}
 </script>
 
 <button id="clickbutton" type="button">Click to test!</button>
+<button id="test2" type="button">Test 2</button>
+
 <p id="output"></p>
+
+<div class="_3b-9">
+  <div>
+    <div class="UFIRow _48ph _48pi UFIComment _4oep" role="article" aria-label="Comment" data-ft="{&quot;tn&quot;:&quot;R1&quot;}">
+      <div class="_3b-9">
+        <div>
+          <div direction="left" class="clearfix">
+            <div class="_ohe lfloat">
+              <a data-ft="{&quot;tn&quot;:&quot;T&quot;}" data-hovercard="/ajax/hovercard/hovercard.php?id=100001280657538&amp;extragetparams=%7B%22on_public_ufi%22%3Afalse%2C%22hc_location%22%3A%22ufi%22%7D" href="https://www.facebook.com/david.chambers.33046" class="img _8o _8s UFIImageBlockImage" tabindex="-1" aria-hidden="true"><img alt="David Chambers" class="img UFIActorImage _54ru img" src="https://scontent-lhr3-1.xx.fbcdn.net/v/t1.0-1/p32x32/15747385_1351915331527809_8906161848556284378_n.jpg?oh=884d96876f9c7624842ebf2e60528c83&amp;oe=5934EEB8">
+              </a>
+            </div>
+            <div class="">
+              <div class="UFIImageBlockContent _42ef clearfix" direction="right">
+                <div class="_ohf rfloat">
+                  <button class="UFICommentCloseButtonFake _50zy _50-0 _50z- _5upp _42ft" tabindex="-1" type="button" title="Remove"><em class="_4qba" data-intl-translation="Remove" data-intl-trid=""><!-- react-text: 42 -->Remove<!-- /react-text --></em>
+                  </button>
+                </div>
+                <div class="">
+                  <div class="UFICommentContentBlock">
+                    <div class="UFICommentContent"><span><a data-ft="{&quot;tn&quot;:&quot;;&quot;}" class=" UFICommentActorName" data-hovercard="/ajax/hovercard/hovercard.php?id=100001280657538&amp;extragetparams=%7B%22is_public%22%3Afalse%2C%22hc_location%22%3A%22ufi_admin%22%7D" dir="ltr" href="https://www.facebook.com/david.chambers.33046"><!-- react-text: 48 -->David Chambers<!-- /react-text --></a></span><span><span><!-- react-text: 51 --> <!-- /react-text --><span data-ft="{&quot;tn&quot;:&quot;K&quot;}"><span class="UFICommentBody"><span>It's too bad you are really ugly, it ruins the photo!</span></span>
+                      </span>
+                      </span>
+                      </span><span></span>
+                    </div>
+                    <div class="fsm fwn fcg UFICommentActions"><a class="UFILikeLink" data-ft="{&quot;tn&quot;:&quot;>&quot;}" data-testid="ufi_comment_like_link" href="#" role="button" title="Like this comment"><em class="_4qba" data-intl-translation="Like" data-intl-trid=""><!-- react-text: 59 -->Like<!-- /react-text --></em></a><span role="presentation" aria-hidden="true"> · </span><a class="UFIReplyLink" href="#" role="button"><em class="_4qba" data-intl-translation="Reply" data-intl-trid=""><!-- react-text: 63 -->Reply<!-- /react-text --></em></a><span role="presentation" aria-hidden="true"> · </span><span><a class="uiLinkSubtle" href="/groups/189616694867076/permalink/189618001533612/?comment_id=189618198200259&amp;comment_tracking=%7B%22tn%22%3A%22R1%22%7D" data-ft="{&quot;tn&quot;:&quot;N&quot;}" data-testid="ufi_comment_timestamp"><abbr class="livetimestamp" title="Saturday, 11 March 2017 at 20:24" data-utime="1489263885" data-shorten="true"><span class="timestampContent">1 hr</span>
+                      </abbr>
+                      </a>
+                      </span>
+                    </div><span><a aria-label="Hide this" class="UFICommentCloseButton _50zy _50-0 _50z- _5upp _42ft" data-testid="ufi_comment_close_button" data-hover="tooltip" data-tooltip-alignh="center" data-tooltip-content="Hide this" href="#"></a></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="UFIRow UFIComment _4oep" role="article" aria-label="Comment" data-ft="{&quot;tn&quot;:&quot;R0&quot;}">
+      <div class="_3b-9">
+        <div>
+          <div direction="left" class="clearfix">
+            <div class="_ohe lfloat">
+              <a data-ft="{&quot;tn&quot;:&quot;T&quot;}" data-hovercard="/ajax/hovercard/hovercard.php?id=100013303060639&amp;extragetparams=%7B%22on_public_ufi%22%3Afalse%2C%22hc_location%22%3A%22ufi%22%7D" href="https://www.facebook.com/profile.php?id=100013303060639" class="img _8o _8s UFIImageBlockImage" tabindex="-1" aria-hidden="true"><img alt="Czeróczky Vilmos" class="img UFIActorImage _54ru img" src="https://scontent-lhr3-1.xx.fbcdn.net/v/t1.0-1/p32x32/16649223_254690164984417_1996909738081566963_n.jpg?oh=b1c4a81b02286605cd0fd3ebbd182ea5&amp;oe=59656DED">
+              </a>
+            </div>
+            <div class="">
+              <div class="UFIImageBlockContent _42ef clearfix" direction="right">
+                <div class="_ohf rfloat">
+                  <button class="UFICommentCloseButtonFake _50zy _50-0 _50z- _5upp _42ft" tabindex="-1" type="button" title="Remove"><em class="_4qba" data-intl-translation="Remove" data-intl-trid=""><!-- react-text: 82 -->Remove<!-- /react-text --></em>
+                  </button>
+                </div>
+                <div class="">
+                  <div class="UFICommentContentBlock">
+                    <div class="UFICommentContent"><span><a data-ft="{&quot;tn&quot;:&quot;;&quot;}" class=" UFICommentActorName" data-hovercard="/ajax/hovercard/hovercard.php?id=100013303060639&amp;extragetparams=%7B%22is_public%22%3Afalse%2C%22hc_location%22%3A%22ufi_admin%22%7D" dir="ltr" href="https://www.facebook.com/profile.php?id=100013303060639"><!-- react-text: 88 -->Czeróczky Vilmos<!-- /react-text --></a></span><span><span><!-- react-text: 91 --> <!-- /react-text --><span data-ft="{&quot;tn&quot;:&quot;K&quot;}"><span class="UFICommentBody"><span>I like you!</span></span>
+                      </span>
+                      </span>
+                      </span><span></span>
+                    </div>
+                    <div class="fsm fwn fcg UFICommentActions"><a class="UFILikeLink" data-ft="{&quot;tn&quot;:&quot;>&quot;}" data-testid="ufi_comment_like_link" href="#" role="button" title="Like this comment"><em class="_4qba" data-intl-translation="Like" data-intl-trid=""><!-- react-text: 99 -->Like<!-- /react-text --></em></a><span role="presentation" aria-hidden="true"> · </span><a class="UFIReplyLink" href="#" role="button"><em class="_4qba" data-intl-translation="Reply" data-intl-trid=""><!-- react-text: 103 -->Reply<!-- /react-text --></em></a><span role="presentation" aria-hidden="true"> · </span><span><a class="uiLinkSubtle" href="/groups/189616694867076/permalink/189618001533612/?comment_id=189618661533546&amp;comment_tracking=%7B%22tn%22%3A%22R0%22%7D" data-ft="{&quot;tn&quot;:&quot;N&quot;}" data-testid="ufi_comment_timestamp"><abbr class="livetimestamp" title="Saturday, 11 March 2017 at 20:26" data-utime="1489263991" data-shorten="true"><span class="timestampContent">1 hr</span>
+                      </abbr>
+                      </a>
+                      </span>
+                    </div><span><a aria-label="Edit or delete this" class="UFICommentCloseButton _5upq _5upr _5upp _42ft" data-testid="ufi_comment_close_button" data-hover="tooltip" data-tooltip-alignh="center" data-tooltip-content="Edit or delete this" href="#"></a></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="UFIRow UFILastComment UFIComment _4oep" role="article" aria-label="Comment" data-testid="ufi_highlighted_comment" data-ft="{&quot;tn&quot;:&quot;R&quot;}">
+      <div class="_3b-9">
+        <div>
+          <div direction="left" class="clearfix">
+            <div class="_ohe lfloat">
+              <a data-ft="{&quot;tn&quot;:&quot;T&quot;}" data-hovercard="/ajax/hovercard/hovercard.php?id=100001280657538&amp;extragetparams=%7B%22on_public_ufi%22%3Afalse%2C%22hc_location%22%3A%22ufi%22%7D" href="https://www.facebook.com/david.chambers.33046" class="img _8o _8s UFIImageBlockImage" tabindex="-1" aria-hidden="true"><img alt="David Chambers" class="img UFIActorImage _54ru img" src="https://scontent-lhr3-1.xx.fbcdn.net/v/t1.0-1/p32x32/15747385_1351915331527809_8906161848556284378_n.jpg?oh=884d96876f9c7624842ebf2e60528c83&amp;oe=5934EEB8">
+              </a>
+            </div>
+            <div class="">
+              <div class="UFIImageBlockContent _42ef clearfix" direction="right">
+                <div class="_ohf rfloat">
+                  <button class="UFICommentCloseButtonFake _50zy _50-0 _50z- _5upp _42ft" tabindex="-1" type="button" title="Remove"><em class="_4qba" data-intl-translation="Remove" data-intl-trid=""><!-- react-text: 122 -->Remove<!-- /react-text --></em>
+                  </button>
+                </div>
+                <div class="">
+                  <div class="UFICommentContentBlock">
+                    <div class="UFICommentContent"><span><a data-ft="{&quot;tn&quot;:&quot;;&quot;}" class=" UFICommentActorName" data-hovercard="/ajax/hovercard/hovercard.php?id=100001280657538&amp;extragetparams=%7B%22is_public%22%3Afalse%2C%22hc_location%22%3A%22ufi_admin%22%7D" dir="ltr" href="https://www.facebook.com/david.chambers.33046"><!-- react-text: 128 -->David Chambers<!-- /react-text --></a></span><span><span><!-- react-text: 131 --> <!-- /react-text --><span data-ft="{&quot;tn&quot;:&quot;K&quot;}"><span class="UFICommentBody"><span>Hate you!</span></span>
+                      </span>
+                      </span>
+                      </span><span></span>
+                    </div>
+                    <div class="fsm fwn fcg UFICommentActions"><a class="UFILikeLink" data-ft="{&quot;tn&quot;:&quot;?&quot;}" data-testid="ufi_comment_like_link" href="#" role="button" title="Unlike this comment"><em class="_4qba" data-intl-translation="Unlike" data-intl-trid=""><!-- react-text: 139 -->Unlike<!-- /react-text --></em></a><span role="presentation" aria-hidden="true"> · </span><a class="UFIReplyLink" href="#" role="button"><em class="_4qba" data-intl-translation="Reply" data-intl-trid=""><!-- react-text: 143 -->Reply<!-- /react-text --></em></a><span role="presentation" aria-hidden="true"> · </span><a ajaxify="/ajax/browser/dialog/likes?id=189619641533448" aria-label="2 likes" class="UFICommentLikeButton UFICommentLikedButton" data-hover="tooltip" data-tooltip-alignh="center" href="/browse/likes?id=189619641533448" rel="dialog" role="button" id="js_do" data-tooltip-uri="/ajax/like/tooltip.php?comment_fbid=189619641533448&amp;comment_from=100001280657538&amp;comment_likecount=2&amp;comment_id=189618001533612_189619641533448&amp;cache_buster=738&amp;av=100013303060639"><span class="UFICommentReactionIconContainer"><i class="_3j7l _2p78 _9-y"></i></span><span>2</span></a><span role="presentation" aria-hidden="true"> · </span><span><a class="uiLinkSubtle" href="/groups/189616694867076/permalink/189618001533612/?comment_id=189619641533448&amp;comment_tracking=%7B%22tn%22%3A%22R%22%7D" data-ft="{&quot;tn&quot;:&quot;N&quot;}" data-testid="ufi_comment_timestamp"><abbr class="livetimestamp" title="Saturday, 11 March 2017 at 20:29" data-utime="1489264150" data-shorten="true"><span class="timestampContent">1 hr</span>
+                      </abbr>
+                      </a>
+                      </span>
+                    </div><span><a aria-label="Hide this" class="UFICommentCloseButton _50zy _50-0 _50z- _5upp _42ft" data-testid="ufi_comment_close_button" data-hover="tooltip" data-tooltip-alignh="center" data-tooltip-content="Hide this" href="#"></a></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- react-empty: 150 -->
+  </div>
+</div>

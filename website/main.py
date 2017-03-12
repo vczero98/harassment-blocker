@@ -7,7 +7,10 @@ import shlex
 app = Flask(__name__)
 app.secret_key = 'super secret key'
 
+harassmentCounter = 0
+
 def blockMessage(message):
+	global harassmentCounter
 	tone_analyzer = ToneAnalyzerV3(username=ApiDetails.username, password=ApiDetails.password, version=ApiDetails.version)
 	analysed_json = json.loads(json.dumps(tone_analyzer.tone(text=message), indent=2))
 
@@ -20,6 +23,7 @@ def blockMessage(message):
 
 	if (emotions["anger"] + emotions["disgust"])/2 > (emotions["joy"] +emotions["fear"])/2:
 		print(message, True)
+		harassmentCounter += 1
 		return True
 	else:
 		print(message, False)
@@ -27,8 +31,9 @@ def blockMessage(message):
 
 @app.route('/')
 def index():
-	# return render_template("index.html", counter=1234567)
-	return render_template("javascripttest.html")
+	global harassmentCounter
+	return render_template("index.html", counter=harassmentCounter)
+	# return render_template("javascripttest.html")
 
 @app.route('/analyse_text/', methods = ['GET', 'POST'])
 def analyse_text():
