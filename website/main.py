@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, jsonify
 import json
 from watson_developer_cloud import ToneAnalyzerV3
 from ApiDetails import ApiDetails
+import shlex
 
 app = Flask(__name__)
 app.secret_key = 'super secret key'
@@ -18,19 +19,30 @@ def blockMessage(message):
 				emotions[tone["tone_id"]] = tone["score"]
 
 	if (emotions["anger"] + emotions["disgust"])/2 > (emotions["joy"] +emotions["fear"])/2:
+		print(message, True)
 		return True
 	else:
+		print(message, False)
 		return False
 
 @app.route('/')
 def index():
-	return render_template("index.html", counter=1234567)
+	# return render_template("index.html", counter=1234567)
+	return render_template("javascripttest.html")
 
-@app.route('/analyse_text/')
+@app.route('/analyse_text/', methods = ['GET', 'POST'])
 def analyse_text():
-	message = request.args.get("text", 0, type=str)
+	message = request.args.get("text")
+	message = message.replace("\"", "")
+	message = message.replace("[", "")
+	message = message.replace("]", "")
+	messages = message.split(",")
 
-	return jsonify(block=blockMessage(message))
+	replies = []
+	for m in messages:
+		replies.append(blockMessage(m))
+
+	return jsonify(replies=replies)
 
 if __name__ == "__main__":
 	app.run(debug=True)
