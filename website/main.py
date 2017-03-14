@@ -4,9 +4,11 @@ from watson_developer_cloud import ToneAnalyzerV3
 from ApiDetails import ApiDetails
 import shlex
 from CounterFile import CounterFile
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 app.secret_key = 'super secret key'
+CORS(app)
 
 def blockMessage(message):
 	tone_analyzer = ToneAnalyzerV3(username=ApiDetails.username, password=ApiDetails.password, version=ApiDetails.version)
